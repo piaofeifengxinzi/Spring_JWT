@@ -15,17 +15,17 @@ public class DAOUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
-    private String username;
+    private String phonenumber;
     @Column
     @JsonIgnore
     private String password;
 
     public String getUsername() {
-        return username;
+        return phonenumber;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public String getPassword() {
