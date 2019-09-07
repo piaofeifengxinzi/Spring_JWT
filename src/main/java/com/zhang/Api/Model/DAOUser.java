@@ -20,11 +20,11 @@ public class DAOUser {
     @JsonIgnore
     private String password;
 
-    public String getUsername() {
+    public String getPhonenumber() {
         return phonenumber;
     }
 
-    public void setUsername(String phonenumber) {
+    public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
 
