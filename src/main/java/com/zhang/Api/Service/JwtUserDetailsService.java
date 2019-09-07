@@ -6,7 +6,6 @@ import com.zhang.Api.Dao.UserDao;
 import com.zhang.Api.Model.DAOUser;
 import com.zhang.Api.Model.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,7 +30,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        DAOUser user = (DAOUser) userDao.findByUsername(username);
+        DAOUser user = userDao.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
@@ -40,10 +39,10 @@ public class JwtUserDetailsService implements UserDetailsService {
     }
 
 
-    public UserDao save(UserDTO user) {
+    public DAOUser save(UserDTO user) {
         DAOUser newUser = new DAOUser();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-        return (UserDao) userDao.save(newUser);
+        return userDao.save(newUser);
     }
 }
