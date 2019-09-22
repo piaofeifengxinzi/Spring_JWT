@@ -47,6 +47,11 @@ public class JwtAuthenticationController {
     //显而易见，这是一个注册路由
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
+        try{
+            Integer.valueOf(user.getPhonenumber());
+        }catch (Exception e){
+            return ResponseEntity.ok("PhoneError");
+        }
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 
